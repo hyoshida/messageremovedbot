@@ -1,22 +1,22 @@
---- /usr/share/pyshared/Skype4Py/skype.py	2008-10-31 15:34:12.000000000 +0000
-+++ /usr/share/pyshared/Skype4Py/skype.py	2011-08-27 17:36:08.969168423 +0100
-@@ -257,6 +257,8 @@ class ISkype(EventHandlingBase):
-                     o = IChatMessage(ObjectId, self)
-                     if PropName == 'STATUS':
-                         self._CallEventHandler('MessageStatus', o, Value)
-+                    if PropName == 'BODY':
-+                        self._CallEventHandler('MessageEdited', o)
-                 elif ObjectType == 'APPLICATION':
-                     o = IApplication(ObjectId, self)
-                     if PropName == 'CONNECTING':
-@@ -1560,6 +1562,10 @@ class ISkypeEvents(object):
-         @param Visible: Tells if the group is visible or not.
-         @type Visible: bool
-         '''
-+    
-+    def MessageEdited(self, Message):
-+        '''This event is caused by a message Edit
-+        '''
+--- /usr/local/lib/python2.6/dist-packages/Skype4Py-1.0.34-py2.6.egg/Skype4Py/skype.py	2013-05-22 01:44:40.000000000 +0900
++++ /usr/local/lib/python2.6/dist-packages/Skype4Py-1.0.34-py2.6.egg/Skype4Py/skype.py	2013-05-22 01:47:42.000000000 +0900
+@@ -86,8 +86,6 @@
+                     o = ChatMessage(skype, object_id)
+                     if prop_name == 'STATUS':
+                         skype._CallEventHandler('MessageStatus', o, str(value))
++                    if prop_name == 'BODY':
++                        skype._CallEventHandler('MessageEdited', o)
+                 elif object_type == 'APPLICATION':
+                     o = Application(skype, object_id)
+                     if prop_name == 'CONNECTING':
+@@ -1588,10 +1586,6 @@
+             Tells if the group is visible or not.
+         """
  
++    def MessageEdited(self, Message):
++        """This event is caused by a message Edit
++        """
++
      def MessageHistory(self, Username):
-         '''This event is caused by a change in message history.
+         """This event is caused by a change in message history.
+ 

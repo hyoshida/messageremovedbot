@@ -29,6 +29,7 @@ Licence:
 Requirements:
     Requires Python Levenshtein and Skype4Py libraries
 
+    eg. sudo easy_install Skype4Py
     eg. sudo apt-get install python-levenshtein python-skype
 
     You will need to patch your Skype4Py to add support for edit notifcations.

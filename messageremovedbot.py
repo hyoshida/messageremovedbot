@@ -1,4 +1,5 @@
 #!/usr/bin/python2.6
+# -*- coding:utf-8 -*-
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -20,6 +21,11 @@ import Skype4Py
 import Levenshtein
 
 originals = {}
+
+# for Support multi-byte message
+import sys
+import codecs
+sys.stdout = codecs.getwriter('utf_8')(sys.stdout)
 
 class MessageRemovedBot:
 
